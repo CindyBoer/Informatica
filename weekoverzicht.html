@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weekoverzicht | Het is WEERtijd </title>
+    <link rel="stylesheet" type="text/css" href="../css/stylewa.css">
+    <link rel="shortcut icon" href="../afbeeldingen/LogoWeerApp.png" type="image/x-icon">
+    <script type="text/javascript" src="../JS/instruct_buienradarLibrary_20210211.js"></script>
+    <script type="text/javascript" src="../JS/Chart.bundle.min.js"></script>
+    <script type="text/javascript">
+      function pageload() {
+        loadBuienradarData(); getLocation();
+      }
+
+      function showWeatherInfo() {
+        // date_showDate("dag1", forecast_date(dagen = 1))
+        // forecast_minTemperature("dag1", dagen = 1)
+        // forecast_maxTemperature(id, dagen = 1)
+        for (i = 0; i < 5; i++){
+          let dag = i + 1;
+          document.getElementsByClassName("dag")[i].innerHTML = get_date_showDate(forecast_date(dagen=dag ));
+          document.getElementsByClassName("temp")[i].innerHTML = get_avg_temp(dagen=dag) + " "+ "&deg;C";
+          document.getElementsByClassName("winddir")[i].innerHTML = get_forecast_windDirection(dagen=dag);
+          document.getElementsByClassName("windkracht")[i].innerHTML= get_forecast_wind(dagen=dag);
+          document.getElementsByClassName("zon")[i].innerHTML= get_forecast_sunChance(dagen=dag) + " " +"&#37";
+          document.getElementsByClassName("regen")[i].innerHTML = get_forecast_rainChance(dagen=dag) + " " +"&#37";
+          document.getElementsByClassName("mintemp")[i].innerHTML = get_forecast_minTemperature(dagen=dag) + " "+ "&deg;C";
+          document.getElementsByClassName("maxtemp")[i].innerHTML = get_forecast_maxTemperature(dagen=dag) + " "+ "&deg;C";
+          document.getElementsByClassName("icon")[i].src = get_forecast_iconurl(dagen=dag);
+        }
+        // document.getElementsByClassName("dag")[0].innerHTML = get_date_showDate(forecast_date(dagen=1));
+        // document.getElementsByClassName("dag")[1].innerHTML;
+        // document.getElementsByClassName("dag")[2].innerHTML;
+        // document.getElementsByClassName("dag")[3].innerHTML;
+        // document.getElementsByClassName("dag")[4].innerHTML;
+      }
+    </script>
+  </head> 
+
+  <body onload="pageload();">
+    <header class="header">
+      <img src="../afbeeldingen/zon.jpg" alt="witte wolken">
+      <h1>Het is <b style="font-weight: 700; color: #00c9a7ff;">WEER</b>tijd</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="weekoverzicht.html">Weekoverzicht</a></li>
+            <li><a href="advies.html">Advies</a></li>
+            <li><a href="neerslaggrafiek.html">Neerslag</a></li>
+            <li><a href="weerfotos.html">Weerfoto's</a></li>
+            <li><a href="weerlanden.html">Weer in buitenland</a></li>
+        </ul>
+    </nav>
+
+    <table class="overzicht">
+      <tr>
+        <th>Dag</th>
+        <th>Min. temperatuur</th>
+        <th>Max. temperatuur</th>
+        <th>Gemiddelde temperatuur</th>
+        <th>Windrichting</th>
+        <th>Windkracht</th>
+        <th>Kans op zon</th>
+        <th>Kans op regen</th>
+        <th>Icon</th>
+      </tr>
+
+      <tr>
+        <td class="dag">...</td>
+        <td class="mintemp">...</td>
+        <td class="maxtemp">...</td>
+        <td class="temp">...</td>
+        <td class="winddir">...</td>
+        <td class="windkracht">...</td>
+        <td class="zon">...</td>
+        <td class="regen">...</td>
+        <td><img class="icon" alt="weerafbeelding"></td>
+      </tr>
+      <tr>
+        <td class="dag">...</td>
+        <td class="mintemp">...</td>
+        <td class="maxtemp">...</td>
+        <td class="temp">...</td>
+        <td class="winddir">...</td>
+        <td class="windkracht">...</td>
+        <td class="zon">...</td>
+        <td class="regen">...</td>
+        <td><img class="icon" alt="weerafbeelding"></td>
+      </tr>
+      <tr>
+        <td class="dag">...</td>
+        <td class="mintemp">...</td>
+        <td class="maxtemp">...</td>
+        <td class="temp">...</td>
+        <td class="winddir">...</td>
+        <td class="windkracht">...</td>
+        <td class="zon">...</td>
+        <td class="regen">...</td>
+        <td><img class="icon" alt="weerafbeelding"></td>
+      </tr>
+      <tr>
+        <td class="dag">...</td>
+        <td class="mintemp">...</td>
+        <td class="maxtemp">...</td>
+        <td class="temp">...</td>
+        <td class="winddir">...</td>
+        <td class="windkracht">...</td>
+        <td class="zon">...</td>
+        <td class="regen">...</td>
+        <td><img class="icon" alt="weerafbeelding"></td>
+      </tr>
+      <tr>
+        <td class="dag">...</td>
+        <td class="mintemp">...</td>
+        <td class="maxtemp">...</td>
+        <td class="temp">...</td>
+        <td class="winddir">...</td>
+        <td class="windkracht">...</td>
+        <td class="zon">...</td>
+        <td class="regen">...</td>
+        <td><img class="icon" alt="weerafbeelding"></td>
+      </tr>
+    </table> 
+    
+    <footer>
+      <p>Contact: <a href="mailto:weerappbuddy@outlook.com">weerappbuddy@outlook.com</a></p>
+    </footer>
+
+  </body>

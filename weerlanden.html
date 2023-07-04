@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home | Het is WEERtijd </title>
+    <link rel="stylesheet" type="text/css" href="../css/stylewa.css">
+    <link rel="shortcut icon" href="../afbeeldingen/LogoWeerApp.png" type="image/x-icon">
+  </head>
+
+  <body>
+    <header class="header">
+      <img src="../afbeeldingen/zon.jpg" alt="witte wolken">
+      <h1>Het is <b style="font-weight: 700; color: #00c9a7ff;">WEER</b>tijd</h1>
+    </header>
+    
+    <nav>
+      <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="weekoverzicht.html">Weekoverzicht</a></li>
+          <li><a href="advies.html">Advies</a></li>
+          <li><a href="neerslaggrafiek.html">Neerslag</a></li>
+          <li><a href="weerfotos.html">Weerfoto's</a></li>
+          <li><a class="active" href="weerlanden.html">Weer in buitenland</a></li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+       <section class="main">
+         <section class="inputs">
+         <input type="text" placeholder="Type een stad of land in ..." id="cityinput">
+         <input type="submit" value="Verzenden" id="add">
+         </section>
+      
+         <section class="display2">
+         <div class="wrapper2">
+            <h2>Het weer in:</h2>
+            <p id="cityoutput">
+            <h2>Lucht conditie</h2>
+            <p id="description"></p>
+            <h2>Temperatuur</h2>
+            <p id="temp"></p>
+            <h2>Windkracht</h2>
+            <p id="wind"></p>
+         </div>
+      </section>
+    </div>
+
+    <footer class="footerweerlanden">
+      <p>Contact: <a href="mailto:weerappbuddy@outlook.com">weerappbuddy@outlook.com</a></p>
+    </footer>
+
+
+<script>
+  var inputval = document.querySelector('#cityinput')
+  var btn = document.querySelector('#add');
+  var city = document.querySelector('#cityoutput')
+  var descrip = document.querySelector('#description')
+  var temp = document.querySelector('#temp')
+  var wind = document.querySelector('#wind')
+
+//verandert kelvin naar celcius.
+  apik = "3045dd712ffe6e702e3245525ac7fa38" 
+
+function convertion(val){
+return (val - 273).toFixed(2)
+}
+
+btn.addEventListener('click', function(){
+
+//Api link waar alle informatie vandaan wordt gehaald.
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&appid='+apik)
+    .then(res => res.json())
+
+
+    .then(data => {
+
+//Verzamelde informatie krijgt hier een fariabel.
+        var nameval = data['name']
+        var descrip = data['weather']['0']['description']
+        var tempature = data['main']['temp']
+        var wndspd = data['wind']['speed']
+//Deze stukjes code zorgen ervoor dat de gevraagde informatie op de site zichtbaar wordt.
+        city.innerHTML=`<span>${nameval}<span>`
+        temp.innerHTML = `<span>${ convertion(tempature)} &deg;C</span>`
+        description.innerHTML = `<span>${descrip}<span>`
+        wind.innerHTML = `<span>${wndspd} km/h<span>`
+    })
+
+//zorgt ervoor dat je een melding krijgt als je niets intypt in de zoekbalk en toch op verzenden klikt.
+    .catch(err => alert('Deze stad of land bestaat niet'))
+})
+</script>
+ 
+</body>

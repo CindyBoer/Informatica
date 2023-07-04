@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home | Het is WEERtijd </title>
+    <link rel="stylesheet" type="text/css" href="../css/stylewa.css">
+    <link rel="shortcut icon" href="../afbeeldingen/LogoWeerApp.png" type="image/x-icon">
+    <script type="text/javascript" src="../JS/instruct_buienradarLibrary_20210211.js"></script>
+    <script type="text/javascript" src="../JS/Chart.bundle.min.js"></script>
+    <script type="text/javascript">
+    function showWeatherInfo() {
+             currentLocation_cityName("huidigelocatie");
+             forecast_summary("voorspelling");
+            //  currentLocation_temperature("temperatuur");
+            //  document.getElementById("temperatuur").innerHTML = document.getElementById("temperatuur").innerHTML + " &#8451";
+            currentLocation_temperature_in_CDegree("temperatuur");
+            date_showDate("datum", datum = new Date(), seperator = "-");
+            currentLocation_stationIconUrl("icon");
+            time_showTime("tijd", datum = new Date(), seperator = ":")
+    }
+    function pageload() {
+      loadBuienradarData(); getLocation();
+    }
+    </script>
+  </head>
+
+  <body onload="pageload();">
+    <div id="wrapper">
+  
+    <header class="header">
+        <img src="../afbeeldingen/zon.jpg" alt="witte wolken">
+        <h1>Het is <b style="font-weight: 700; color: #00c9a7ff;">WEER</b>tijd</h1>
+    </header>
+    
+    <nav>
+      <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="weekoverzicht.html">Weekoverzicht</a></li>
+          <li><a href="advies.html">Advies</a></li>
+          <li><a href="neerslaggrafiek.html">Neerslag</a></li>
+          <li><a href="weerfotos.html">Weerfoto's</a></li>
+          <li><a href="weerlanden.html">Weer in buitenland</a></li>
+      </ul>
+  </nav>
+
+  <article class="article article-hover voorspelling">
+      <a class="article-a" href="meerweer.html">
+      <img class= "weericon" id="icon" alt="weer">
+      
+
+      <h2>Huidige locatie</h2>
+          <p id="huidigelocatie">
+            laden...
+      
+          </p>
+      <h2>Datum</h2>
+        <p id="datum">
+          laden...
+        </p> 
+        <p id="tijd">
+          laden...
+        </p>
+
+      <h2>Voorspelling vandaag</h2>
+        <p id="voorspelling">
+          laden...
+        </p>
+      
+      <h2>Temperatuur</h2>
+        <p id="temperatuur">
+          laden...
+        </p>
+      
+
+    </a>  
+  </article>
+  
+  <footer>
+    <p>Contact: <a href="mailto:weerappbuddy@outlook.com">weerappbuddy@outlook.com</a></p>
+  </footer>
+
+  </div>
+
+  </body>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Advies | Het is WEERtijd </title>
+    <link rel="stylesheet" type="text/css" href="../css/stylewa.css">
+    <link rel="shortcut icon" href="../afbeeldingen/LogoWeerApp.png" type="image/x-icon">
+    <script type="text/javascript" src="../JS/instruct_buienradarLibrary_20210211.js"></script>
+    <script type="text/javascript" src="../JS/Chart.bundle.min.js"></script>
+    <script type="text/javascript">
+          var weerstations;
+          function showWeatherInfo () {
+            
+          }
+          function getObjectById(id) {
+            for (var weerstation in weerstations) {
+              if (weerstations.hasOwnProperty(weerstation)) {
+                if(weerstations[weerstation].$id == id) {
+                   return weerstations[weerstation];
+                }
+              }
+            }
+          } 
+
+          function wandelWeer() {
+            var weer = getObjectById("8");
+              if (weer.temperature > 12 && (weer.rainFallLastHour == 0)) {
+                return document.getElementsByClassName("wandelGreen")[0].innerHTML = "&#10004;";
+            }
+            else if (weer.temperature > 12 || (weer.rainFallLastHour == 0)) {
+              return document.getElementsByClassName("wandelYellow")[0].innerHTML = "&#10004;";
+            }
+            else {
+              return document.getElementsByClassName("wandelRed")[0].innerHTML = "&#10004;";
+            }
+          }
+
+           function terrasweer() {
+            var weer= getObjectById("8"); 
+              if (weer.temperature > 20 && (weer.rainFallLastHour == 0)) {
+                return document.getElementsByClassName("terrasGreen")[0].innerHTML = "&#10004;";
+              }
+              else if (weer.temperature > 20 || (weer.rainFallLastHour == 0)) {
+                return document.getElementsByClassName("terrasYellow")[0].innerHTML = "&#10004;";
+              }
+              else {
+                return document.getElementsByClassName("terrasRed")[0].innerHTML = "&#10004;";
+              }
+           }
+
+           function korteWeer() {
+            var weer= getObjectById("8"); 
+              if (weer.temperature > 20 && (weer.windspeed < 8)) {
+                return document.getElementsByClassName("korteGreen")[0].innerHTML = "&#10004;";
+              }
+              else if (weer.temperature > 20 || (weer.windspeed < 8)) {
+                return document.getElementsByClassName("korteYellow")[0].innerHTML = "&#10004;";
+              }
+              else {
+                return document.getElementsByClassName("korteRed")[0].innerHTML = "&#10004;";
+              }
+           }
+
+           function parapluWeer() {
+            var weer= getObjectById("8"); 
+              if ( weer.rainFallLastHour == 5 && (weer.windspeed < 5)) {
+                return document.getElementsByClassName("parapluGreen")[0].innerHTML = "&#10004;";
+              }
+              else if (weer.rainFallLastHour == 3 || (weer.windspeed < 5)) {
+                return document.getElementsByClassName("parapluYellow")[0].innerHTML = "&#10004;";
+              }
+              else {
+                return document.getElementsByClassName("parapluRed")[0].innerHTML = "&#10004;";
+              }
+           }
+
+           function hardlopen() {
+            var weer= getObjectById("8"); 
+              if (weer.temperature < 20 && (weer.temperature) > 8 && (weer.windspeed < 6) && (weer.rainFallLastHour < 3 )) {
+                return document.getElementsByClassName("hardlopenGreen")[0].innerHTML = "&#10004;";
+              }
+              else if (weer.temperature > 20 || (weer.temperature) > 8 || (weer.windspeed < 6) || (weer.rainFallLastHour < 3 )) {
+                return document.getElementsByClassName("hardlopenYellow")[0].innerHTML = "&#10004;";
+              }
+              else {
+                return document.getElementsByClassName("hardlopenRed")[0].innerHTML = "&#10004;";
+              }
+           }
+
+           function strandWeer() {
+              var weer = getObjectById("8");
+              if (weer.temperature > 27 && (weer.rainFallLastHour == 0 ) && (weer.windspeed < 3)) {
+                return document.getElementsByClassName("strandGreen")[0].innerHTML = "&#10004;";
+              }
+              else if (weer.temperature > 27 || (weer.rainFallLastHour == 0) || (weer.windspeed < 3)) {
+                return document.getElementsByClassName("strandYellow")[0].innerHTML = "&#10004;";
+              }
+              else {
+                return document.getElementsByClassName("strandRed")[0].innerHTML = "&#10004;";
+              }
+            }
+
+           function pageload() {
+            loadBuienradarData(); getLocation(); 
+            weerstations = buienradarData.actual.stationmeasurements
+            terrasweer(); 
+            wandelWeer(); 
+            strandWeer();
+            hardlopen();
+            korteWeer();
+            parapluWeer();
+          }
+    </script>
+  </head>
+   
+    
+  <body onload="pageload();">
+        <header class="header">
+            <img src="../afbeeldingen/zon.jpg" alt="witte wolken">
+            <h1>Het is <b style="font-weight: 700; color: #00c9a7ff;">WEER</b>tijd</h1>
+        </header>
+        
+        <nav>
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="weekoverzicht.html">Weekoverzicht</a></li>
+              <li><a class="active" href="advies.html">Advies</a></li>
+              <li><a href="neerslaggrafiek.html">Neerslag</a></li>
+              <li><a href="weerfotos.html">Weerfoto's</a></li>
+              <li><a href="weerlanden.html">Weer in buitenland</a></li>
+          </ul>
+      </nav>
+
+
+
+        <table class="advies">
+          <tr class="">
+            <td class="headeradvies"><h2>Advies</h2></td>
+          </tr>
+            <tr>
+              <div id="" class="circle">
+                <td><h3>Wandelen</h3></td>
+                <td><div id="" class="wandelGreen green circlediv"></div></td>
+                <td><div id="" class="wandelYellow yellow circlediv"></div></td>
+                <td><div id="" class="wandelRed red circlediv"></div></td>
+              </div>
+          </tr>
+
+
+          <tr>
+            <div id="" class="circle">
+              <td><h3>Hardlopen</h3></td>
+              <td><div id="" class="hardlopenGreen green circlediv"></div></td>
+              <td><div id="" class="hardlopenYellow yellow circlediv"></div></td>
+              <td><div id="" class="hardlopenRed red circlediv"></div></td>
+            </div>
+          </tr>
+
+          <tr>
+            <div id="" class="circle">
+              <td><h3>BBQ</h3></td>
+              <td><div id="" class="terrasGreen green circlediv"></div></td>
+              <td><div id="" class="terrasYellow yellow circlediv"></div></td>
+              <td><div id="" class="terrasRed red circlediv"></div></td>
+            </div>
+          
+          </tr>
+
+          <tr>
+            <div id="" class="circle">
+              <td><h3>Naar het strand</h3></td>
+              <td><div id="" class="strandGreen green circlediv"></div></td>
+              <td><div id="" class="strandYellow yellow circlediv"></div></td>
+              <td><div id="" class="strandRed red circlediv"></div></td>
+            </div>
+          </tr>
+
+          <tr>
+            <div id="" class="circle">
+              <td><h3>Korte broek/rok/korte mouwen</h3></td>
+              <td><div id="" class="korteGreen green circlediv"></div></td>
+              <td><div id="" class="korteYellow yellow circlediv"></div></td>
+              <td><div id="" class="korteRed red circlediv"></div></td>
+            </div>
+          </tr>
+
+          <tr>
+              <div id="" class="circle">
+                <td><h3>Paraplu</h3></td>
+                <td><div id="" class="parapluGreen green circlediv"></div></td>
+                <td><div id="" class="parapluYellow yellow circlediv"></div></td>
+                <td><div id="" class="parapluRed red circlediv"></div></td>
+              </div>
+          </tr>
+        </table>
+
+  
+
+
+  </body>
+</html>
+
+
+
+
+      <footer class="footeradvice">
+        <p>Contact: <a href="mailto:weerappbuddy@outlook.com">weerappbuddy@outlook.com</a></p>
+      </footer>
+    
+
+  </body>
+</html>

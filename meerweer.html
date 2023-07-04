@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+  <head>
+      <title>Neerslaggrafiek | Het is WEERtijd </title>
+      <link rel="stylesheet" type="text/css" href="../css/stylewa.css">
+      <script type="text/javascript" src="../JS/instruct_buienradarLibrary_20210211.js"></script>
+      <script type="text/javascript" src="../JS/Chart.bundle.min.js"></script>
+      <script type="text/javascript"> 
+        function showWeatherInfo () {
+          currentLocation_stationSunPower("zonkracht");
+          currentLocation_stationWindSpeedBft("windkracht");
+          currentLocation_stationFeelTemperature("gevoeltemp") + " " + "&deg;C";
+          currentLocation_stationWindDirection("windrichting");
+          currentLocation_stationPrecipitation("neerslag");
+          forecast_maxTemperature("max", dagen = 1);
+        }
+        function pageload() {
+      loadBuienradarData(); getLocation();
+        }
+      </script>
+  </head>
+
+  <body onload="pageload();" style="height:100%;">
+    <div id="wrapper">
+      
+      <div id="homepic-wrapper">
+        <a href="index.html">
+          <img class="homepic" src="../afbeeldingen/icons8-home-192.png" alt="home">
+        </a>
+      </div>
+
+      <article class="voorspelling-totaal">
+        <h2>Weer voor vandaag</h2>
+            <h3>Neerslag</h3>
+              <p id="neerslag">
+                laden...
+              </p>
+            <h3>Gevoelstemperatuur</h3>
+              <p id="gevoeltemp">
+                laden...
+              </p>
+            <h3>Maximale Temperatuur</h3>
+              <p id="max">
+                laden...
+              </p>
+            <h3>Windrichting</h3>
+              <p id="windrichting">
+                laden...
+              </p>
+            <h3>Windkracht</h3>
+              <p id="windkracht">
+                laden...
+              </p>
+            <h3>Zonkracht</h3>
+              <p id="zonkracht">
+                laden...
+              </p>
+     </article>
+
+     <footer class="meerweerfooter">
+      <p>Contact: <a href="mailto:weerappbuddy@outlook.com">weerappbuddy@outlook.com</a></p>
+    </footer>
+
+    </div>
+  </body>
+
+
+
+</html>
+
+
+
+
